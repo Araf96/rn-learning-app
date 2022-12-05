@@ -1,6 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+  FlatList,
+} from "react-native";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -11,7 +19,10 @@ export default function App() {
   };
 
   const courseGoalHandler = () => {
-    setCourseGoals((currGoals) => [...courseGoals, enteredGoal]);
+    setCourseGoals((currGoals) => [
+      ...courseGoals,
+      { uid: Math.random.toString(), value: enteredGoal },
+    ]);
   };
 
   return (
@@ -25,11 +36,15 @@ export default function App() {
         />
         <Button title="Add" onPress={courseGoalHandler} />
       </View>
-      <ScrollView>
-        {courseGoals.map((goal, id) => (
-          <View key={id} style={styles.listItem}><Text>{goal}</Text></View>
-        ))}
-      </ScrollView>
+      <FlatList
+        data={courseGoals}
+        keyExtractor={(item, index) => index}
+        renderItem={(itemData) => (
+          <View style={styles.listItem}>
+            <Text>{itemData.item.value}</Text>
+          </View>
+        )}
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -45,11 +60,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: { width: "80%", borderColor: "black", borderWidth: 1, padding: 10 },
-  listItem:{
-    padding:10,
+  listItem: {
+    padding: 10,
     marginVertical: 10,
-    backgroundColor: '#ccc',
-    borderColor:'black',
-    borderWidth: 1
-  }
+    backgroundColor: "#ccc",
+    borderColor: "black",
+    borderWidth: 1,
+  },
 });
