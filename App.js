@@ -27,7 +27,7 @@ export default function App() {
       </View>
       <View>
         {courseGoals.map((goal, id) => (
-          <View style={styles.listItem}><Text key={id}>{goal}</Text></View>
+          <View key={id} style={styles.listItem}><Text>{goal}</Text></View>
         ))}
       </View>
       <StatusBar style="auto" />
