@@ -20,7 +20,9 @@ export default function App() {
         <TextInput placeholder="Course Goal" style={styles.input} onChangeText={enteredGoalHandler} value={enteredGoal} />
         <Button title="Add" onPress={courseGoalHandler}/>
       </View>
-      <View></View>
+      <View>
+        {courseGoals.map((goal, id)=> <Text key={id}>{goal}</Text>)}
+      </View>
       <StatusBar style="auto" />
     </View>
   );
