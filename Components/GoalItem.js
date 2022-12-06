@@ -1,13 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, TouchableNativeFeedback } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+} from "react-native";
 
 export default function GoalItem(props) {
   return (
-    <TouchableNativeFeedback activeOpacity={.7} onPress={props.onDelete}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={props.onDelete.bind(this, props.id)}
+    >
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
       </View>
-    </TouchableNativeFeedback>
+    </TouchableOpacity>
   );
 }
 
