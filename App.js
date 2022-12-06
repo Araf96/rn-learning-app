@@ -34,7 +34,7 @@ export default function App() {
         data={courseGoals}
         keyExtractor={(item, index) => index}
         initialNumToRender={4}
-        renderItem={(itemData) => <GoalItem title={itemData.item.value} />}
+        renderItem={(itemData) => <GoalItem title={itemData.item.value} onDelete={()=>console.log("It works")} />}
       />
       <StatusBar style="auto" />
     </View>
